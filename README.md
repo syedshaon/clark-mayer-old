@@ -1,290 +1,83 @@
-# 🌐 Clarke Mayer Static Site
+# 🌐 Clark Moyer Static Website (Plain HTML Version)
 
-This repository contains the source code for the **Clarke Mayer** website --- a static site built using **Vite**, **Handlebars**, **HTML**, and **CSS**.
+This repository contains a fully static version of the **Clark Moyer** website --- built using **only HTML, CSS, and JavaScript**, with no build tools or frameworks.
 
-It is optimized for GitHub Pages hosting and supports optional custom domain configuration.
+It's a simplified version of the previous Vite-powered site, ideal for easy deployment and hosting on **GitHub Pages**, **Netlify**, or any static web server.
 
 ---
 
 ## 🚀 Features
 
-- Fast static site built with [Vite](https://vitejs.dev/)
+- 100% static -- no Vite or bundlers required
 
-- Modular page structure using Handlebars partials
+- Uses plain HTML, CSS, and JavaScript
 
-- Optimized assets (CSS, JS, images)
+- Optimized for fast loading and SEO
 
-- SEO-ready (`robots.txt`, `sitemap.xml`)
+- Fully responsive layout
 
-- Configurable for GitHub Pages or a custom domain
+- Clean, readable code structure
 
----
-
-## 🧩 Project Structure
-
-clark-mayer/\
-├── index.html\
-├── certification-guides.html\
-├── fun.html\
-├── cooking.html\
-├── src/\
-│ ├── partials/ # Handlebars partials (header, footer, etc.)\
-│ ├── assets/ # Static assets (CSS, JS, images)\
-│ └── main.js\
-├── vite.config.js\
-├── sitemap.xml\
-├── robots.txt\
-├── package.json\
-└── README.md
+- All shared components (header, footer, etc.) are manually included in each page
 
 ---
 
-## 🧭 1. Clone the Repository
+## ⚙️ How to Use
 
-You can clone this project using either HTTPS or SSH.
+1.  **Clone this repository**
 
-### Using HTTPS:
+    `git clone https://github.com/syedshaon/clark-moyer-static.git`
 
-```bash
-git clone https://github.com/syedshaon/clark-mayer.git
-```
+2.  **Open `index.html` in your browser**\
+    No setup or build steps required.
 
-### Using SSH:
+3.  **To deploy on GitHub Pages:**
 
-```bash
-git clone git@github.com:syedshaon/clark-mayer.git
-```
+    - Go to your repo's settings → Pages
 
-Then navigate into the folder:
+    - Select the `main` branch and `/ (root)` folder
 
-```bash
-cd clark-mayer
-```
+    - Click **Save**
 
-## 💻 2. Local Setup & Testing
-
-### Step 1 --- Install Dependencies
-
-Make sure you have **Node.js (v16 or later)** installed.
-
-Then install dependencies:
-
-`npm install`
-
-### Step 2 --- Run Development Server
-
-Start a local dev server with hot reload:
-
-`npm run dev`
-
-By default, the site will be available at:
-
-`http://localhost:5173`
-
-### Step 3 --- Build for Production
-
-To create an optimized build:
-
-`npm run build`
-
-This generates static files inside the `dist/` folder.
-
-To locally preview the production build:
-
-`npm run preview`
+    - Your site will be live at `https://yourusername.github.io/repo-name/`
 
 ---
 
-## 🌍 3. Deploying to GitHub Pages
+## 🌍 Setting Up a Custom Domain
 
-### Step 1 --- Create a GitHub Repository
+1.  Purchase or use your existing domain.
 
-If this repo is being deployed on a client's GitHub account:
+2.  Add a `CNAME` file in the root of this repo with your domain name:
 
-1.  Create a **new GitHub repository** (for example, `clark-mayer`).
+    `www.clarkemoyer.com`
 
-2.  Push all files to it:
+3.  In your domain DNS settings, create a CNAME record pointing to:
 
-    `git remote set-url origin https://github.com/....................git (new github repo url)
-
-    git push -u origin main`
-
-### Step 2 --- Enable GitHub Pages
-
-1.  Go to **Settings → Pages**
-
-2.  Under **Source**, choose:
-
-    - **Branch:** `main`
-
-    - **Folder:** `/ (root)` or `/dist` if you deploy built files
-
-3.  Click **Save**
-
-The site will be available at:
-
-`https://CLIENT_USERNAME.github.io/clark-mayer/`
+    `yourusername.github.io`
 
 ---
 
-## ⚙️ 4. Vite Configuration for GitHub Pages
+## 🗺️ Updating the Sitemap
 
-Vite needs to know your base path for asset URLs.
+After adding a new domain or page:
 
-In `vite.config.js`, the base path should match the GitHub Pages subdirectory:
+1.  Go to [xml-sitemaps.com](https://www.xml-sitemaps.com/)
 
-`const repoName = "clark-mayer";
-const base = command === "build" ? `/${repoName}/` : "/";`
+2.  Generate a new sitemap using your **current domain** (e.g., <https://www.clarkemoyer.com>)
 
-This ensures all assets load correctly from:
-
-`https://CLIENT_USERNAME.github.io/clark-mayer/`
+3.  Download the XML file and replace the existing `sitemap.xml` in this repo.
 
 ---
 
-## 🌐 5. Adding a Custom Domain
+## 💬 Notes
 
-If you want the site to load from a **custom domain** (like `https://clarkmayer.com`):
+- This version is ideal if you want a lightweight, easily maintainable site.
 
-### Step 1 --- Add Custom Domain in GitHub Pages
-
-1.  Go to **Settings → Pages**
-
-2.  Under **Custom domain**, enter your domain (e.g. `clarkmayer.com`)
-
-3.  Save it --- GitHub will automatically create a `CNAME` file.
-
-### Step 2 --- Configure DNS
-
-In your domain registrar (Namecheap, GoDaddy, Cloudflare, etc.):
-
-- Add **A records** pointing to GitHub Pages servers:
-
-  ```185.199.108.153
-  185.199.109.153
-  185.199.110.153
-  185.199.111.153
-  ```
-
-- Add a **CNAME record**:
-
-  `www  →  your-github-pages-url for me it is syedshaon.github.io`
+- If you ever want to use templating or partials again, you can switch back to the [Vite version](https://github.com/syedshaon/clark-mayer) of the project.
 
 ---
 
-## 🧠 6. Update Vite Config for Custom Domain
+## 👨‍💻 Author
 
-If your site will now live at `https://clarkmayer.com` (root, not a subpath):
-
-Change this line in your `vite.config.js`:
-
-`// OLD (for GitHub Pages subfolder)
-const base = isProduction ? `/clark-mayer/` : "/";
-
-// NEW (for custom domain)
-const base = "/";`
-
-Then rebuild and redeploy:
-
-`npm run build
-git add .
-git commit -m "update base for custom domain"
-git push`
-
----
-
-## 🧾 7. Optional Files (Recommended)
-
-| File          | Purpose                                        |
-| ------------- | ---------------------------------------------- |
-| `robots.txt`  | Tells search engines what to index             |
-| `sitemap.xml` | Helps Google discover your pages               |
-| `CNAME`       | Automatically added when using a custom domain |
-
----
-
-## 🧰 8. Common Commands
-
-| Command           | Description                              |
-| ----------------- | ---------------------------------------- |
-| `npm install`     | Install dependencies                     |
-| `npm run dev`     | Run local development server             |
-| `npm run build`   | Create production-ready build in `dist/` |
-| `npm run preview` | Preview the built site locally           |
-
----
-
-## 🗺️ 9. Update Sitemap After Custom Domain Setup
-
-After the site has been cloned, configured, and verified to work properly on a **new domain**, it’s important to generate a fresh sitemap to match the new URLs.
-
-### Why This Is Important
-
-Your old `sitemap.xml` still points to:
-https://syedshaon.github.io/clark-mayer/
-
-Search engines like Google and Bing use this file to crawl your website.  
-If the URLs don’t match your new domain (for example `https://clarkmayer.com/`), search engines may ignore or delay indexing.
-
----
-
-### ✅ Steps to Generate and Replace Sitemap
-
-1. **Visit the Sitemap Generator:**
-   Go to [https://www.xml-sitemaps.com/](https://www.xml-sitemaps.com/)
-
-2. **Enter your live website URL:**
-   Example: `https://clarkmayer.com/`
-
-3. **Click “Start”**  
-   The tool will crawl all public pages and generate a new `sitemap.xml`.
-
-4. **Download the generated file.**
-
-5. **Replace your existing sitemap:**
-
-- Delete or overwrite the old `sitemap.xml` file in your project root.
-- Paste the new XML content from xml-sitemaps.com.
-
-6. **Re-deploy the site** (commit and push changes):
-
-```bash
-git add sitemap.xml
-git commit -m "update sitemap for custom domain"
-git push
-```
-
----
-
-## 🧑‍💻 10. Troubleshooting
-
-### ❌ Assets not loading on GitHub Pages?
-
-Check `vite.config.js` → ensure `base` matches your repo name.
-
-### ❌ Blank page or 404 after custom domain setup?
-
-Rebuild with `base: "/"` and clear your browser cache.
-
-### ❌ Service Worker not updating?
-
-Increment your `CACHE_NAME` version and re-publish.
-
----
-
-## 🏁 Done!
-
-Your site should now be:
-
-- Running locally on `localhost:5173`
-
-- Deployed to GitHub Pages
-
-- Optionally accessible from a custom domain
-
-- Optimized with SEO configuration
-
----
-
-**Maintained by:** [@syedshaon](https://github.com/syedshaon)\
-📧 For support or questions, feel free to open an issue.
+**Developed by [Syed Shaon](https://github.com/syedshaon)**\
+If you need help customizing, deploying, or adding new features, feel free to reach out.
